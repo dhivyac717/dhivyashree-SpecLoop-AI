@@ -16,9 +16,9 @@ Shopizer is the analyzed target; SpecLoop-AI is a separate proposed analysis too
 
 The order flow in the inspected code delegates from `OrderApi` through a storefront facade to core `OrderService`, with cart, customer, pricing, payment, and shipping collaborators. Cart and customer flows have separate storefront API/facade paths.
 
-## SpecLoop-AI Components Proposed
+## SpecLoop-AI Components
 
-Read-only repository discovery -> evidence inventory -> capability-specific drafting -> human review -> consolidated Markdown output. The Streamlit app is currently only a shell; agent modules are stubs. No AI provider, database, or runtime integration is implemented.
+Read-only repository discovery -> evidence inventory -> deterministic capability artifacts -> Streamlit preview/download. An optional Azure OpenAI adapter drafts BRD requirements from analyst context and route/source-reference metadata after per-run consent. The default path makes no provider call. No database, code-generation agent, Shopizer test runner, or drift service is implemented.
 
 ## Interfaces and Dependencies
 

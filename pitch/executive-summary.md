@@ -16,4 +16,4 @@ The intended outcome is faster, more traceable analysis. It is a hypothesis, not
 
 ## Evidence and Risks
 
-The checked-in order integration test is ignored/incomplete; cart and customer tests cover selected happy and CRUD paths. Customer modules involve sensitive data. No AI provider, deployment, security assessment, or business-impact measurement is configured.
+The checked-in order integration test is ignored/incomplete; cart and customer tests cover selected happy and CRUD paths. Customer modules involve sensitive data. An optional Azure OpenAI BRD adapter is implemented but no endpoint is configured in the repository; real provider use requires organizational approval. No security assessment or business-impact measurement has been performed.

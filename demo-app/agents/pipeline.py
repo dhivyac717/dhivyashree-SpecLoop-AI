@@ -57,14 +57,14 @@ def _render_source_analysis(source: dict, context: dict) -> str:
     return "\n".join(sections) + "\n"
 
 
-def _render_brd(requirements: dict, context: dict, revision: str | None) -> str:
+def _render_brd_evidence(requirements: dict, context: dict, revision: str | None) -> str:
     lines = [
-        "# Shopizer Capability Requirements (Draft)",
+        "# Shopizer Business-Requirement Evidence",
         "",
         f"Source revision: `{revision or 'unknown'}`.",
         "",
-        "These are **source-derived capability observations**, not stakeholder-approved business requirements. "
-        "Statements deliberately describe declared API mappings rather than infer business intent.",
+        "This is a **source evidence inventory for BRD drafting**, not a business requirements document. "
+        "It describes declared API mappings and does not infer stakeholder goals or policy.",
     ]
     for capability in context["capabilities"]:
         items = [item for item in requirements["requirements"] if item["capability"] == capability["name"]]
@@ -74,7 +74,7 @@ def _render_brd(requirements: dict, context: dict, revision: str | None) -> str:
         for item in items:
             evidence = ", ".join(_source_reference(entry) for entry in item["evidence"])
             lines.append(f"- **{item['id']}** ({item['status']}): {item['statement']} Evidence: {evidence}.")
-    lines.extend(["", "## Approval", "", requirements["approvalStatus"] + "."])
+    lines.extend(["", "## BRD status", "", requirements["approvalStatus"] + "."])
     return "\n".join(lines) + "\n"
 
 
@@ -223,7 +223,7 @@ def run_pipeline(repository_path: str) -> dict:
 
     markdown = {
         "SourceAnalysis.md": _render_source_analysis(source, context),
-        "BRD.md": _render_brd(requirements, context, source["revision"]),
+        "BRDEvidence.md": _render_brd_evidence(requirements, context, source["revision"]),
         "SDD.md": _render_sdd(design),
         "UserStories.md": _render_user_stories(context),
         "FunctionalRequirements.md": _render_functional_requirements(requirements),

@@ -11,8 +11,9 @@ Shopizer is a Java 11 Maven multi-module commerce application. This case study c
 1. User selects a local repository root and starts analysis.
 2. Scanner parses root Maven metadata, walks declared Java modules, extracts supported Spring route annotations, and inventories relevant test files/ignore annotations.
 3. Deterministic agents create source-linked capability observations, requirement IDs, design inventory, proposed checks, traceability, and modernization caveats.
-4. Streamlit previews the outputs and offers individual Markdown and ZIP downloads.
-5. Spec Kit keeps the project feature spec, plan, and tasks in versioned project docs.
+4. Optionally, after explicit per-run consent, the Azure OpenAI adapter sends analyst context and route/source-reference metadata and returns a citation-validated BRD draft. The deterministic outputs remain available if configuration is absent or the provider fails.
+5. Streamlit previews the outputs and offers individual Markdown and ZIP downloads.
+6. Spec Kit keeps the project feature spec, plan, and tasks in versioned project docs.
 
 ## Intended Full Loop
 
@@ -20,11 +21,11 @@ Source and tests -> evidence -> BRD -> functional/technical specifications -> hu
 
 ## Components
 
-Current components are `demo-app/streamlit_app.py`, deterministic modules in `demo-app/agents/`, sample-data summaries, and `specs/`. No model provider, database, authentication service, or deployment service is connected.
+Current components are `demo-app/streamlit_app.py`, deterministic modules in `demo-app/agents/`, `azure_openai_brd.py` for optional draft generation through the official OpenAI SDK, sample data, and `specs/`. The Azure endpoint is not configured in the repository. No database, authentication service, or deployment service is connected.
 
 ## Alternatives and Trade-offs
 
-Deterministic local analysis is the safe working baseline. Azure OpenAI, Semantic Kernel, and AI Foundry docs are optional future designs, not current deployment facts. A provider adapter may be added behind an explicit consent boundary when selected.
+Deterministic local analysis is the default safe baseline. An optional Azure OpenAI BRD adapter is implemented behind explicit per-run consent, environment configuration, and citation validation; no provider credentials or endpoint are committed. Semantic Kernel and AI Foundry remain exploratory future options.
 
 ## Security and Data
 

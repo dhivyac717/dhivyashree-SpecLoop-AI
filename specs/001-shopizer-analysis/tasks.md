@@ -14,9 +14,9 @@ description: "User-story task plan for the Shopizer source-to-specification loop
 
 **Purpose**: Establish reproducible, privacy-safe development and demo inputs.
 
-- [ ] T001 Record the tested Shopizer revision and supported source layout in `specs/001-shopizer-analysis/quickstart.md`.
+- [x] T001 Record the tested Shopizer revision and supported source layout in `specs/001-shopizer-analysis/quickstart.md`.
 - [ ] T002 Add synthetic fixtures for normal, malformed, and unsupported Maven/Java inputs in `demo-app/tests/fixtures/`.
-- [ ] T003 Pin supported Python and Streamlit dependency bounds in `demo-app/requirements.txt`.
+- [x] T003 Pin supported Python and Streamlit/OpenAI SDK dependency bounds in `demo-app/requirements.txt`.
 
 ## Phase 2: Foundational
 
@@ -90,24 +90,24 @@ description: "User-story task plan for the Shopizer source-to-specification loop
 - [ ] T034 [US5] Add drift review and resolution status to `demo-app/streamlit_app.py`.
 - [ ] T035 [US5] Document baseline retention, comparison limits, and reviewer disposition in `specs/001-shopizer-analysis/data-model.md`.
 
-## Phase 8: GenAI-Assisted Drafting (Future, Approval-Gated)
+## Phase 8: Optional Azure OpenAI BRD Draft (Prototype Implemented; Real Use Approval-Gated)
 
-**Goal**: Optionally use an approved model to improve drafts without replacing evidence or review.
+**Goal**: Draft BRD requirements from analyst context and cited Shopizer route evidence, without replacing evidence review or stakeholder approval.
 
-**Independent Test**: With a mock provider, verify the request includes only approved evidence, each generated claim cites evidence, and disabling the provider makes no network call.
+**Independent Test**: With a mock Azure client, verify the request contains only analyst context and route/source-reference metadata, generated claims cite known evidence, invalid citations fail, and consent is unchecked by default.
 
-- [ ] T036 [US2] Define provider configuration, source-data notice, retention, and opt-in requirements in `specs/001-shopizer-analysis/research.md`.
-- [ ] T037 [P] Implement a provider-neutral draft interface with a deterministic fallback in `demo-app/agents/llm_provider.py`.
-- [ ] T038 [US2] Add mock-provider tests for evidence grounding, disabled mode, and safe failures in `demo-app/tests/test_llm_provider.py`.
-- [ ] T039 [US2] Add explicit user consent and provider disclosure controls in `demo-app/streamlit_app.py`.
+- [x] T036 [US2] Document Azure configuration, data sent, retention review, and per-run opt-in in `specs/001-shopizer-analysis/research.md` and `specs/001-shopizer-analysis/quickstart.md`.
+- [x] T037 [US2] Implement the opt-in Azure OpenAI BRD draft adapter with evidence-ID validation in `demo-app/agents/azure_openai_brd.py`.
+- [x] T038 [US2] Add mock Azure-client tests for evidence grounding, no-consent mode, and citation rejection in `demo-app/tests/test_azure_openai_brd.py`.
+- [x] T039 [US2] Add explicit per-run consent and provider data disclosure controls in `demo-app/streamlit_app.py`.
 
 ## Phase 9: Polish and Cross-Cutting Concerns
 
 - [ ] T040 [P] Update hackathon architecture diagrams to distinguish implemented and roadmap components in `diagrams/`.
-- [ ] T041 Update demo/README instructions and supported limitations in `README.md`.
+- [x] T041 Update demo/README instructions and supported limitations in `README.md`.
 - [ ] T042 Add a reproducible benchmark protocol for source-reference accuracy and analyst-time measurement in `metrics/business-impact.md`.
-- [ ] T043 Run unit and Streamlit AppTest suites and record actual outcomes in `specs/001-shopizer-analysis/quickstart.md`.
-- [ ] T044 Review public-release contents for secrets, personal data, license clarity, and third-party attribution in `NOTICE.md` and `LICENSE.md`.
+- [x] T043 Run unit and Streamlit AppTest suites and record actual outcomes in `specs/001-shopizer-analysis/quickstart.md`.
+- [x] T044 Review public-release contents for secrets, personal data, license clarity, and third-party attribution in `NOTICE.md` and `LICENSE.md`.
 
 ## Dependencies and Execution Order
 
@@ -115,7 +115,7 @@ description: "User-story task plan for the Shopizer source-to-specification loop
 - US1, US2, and US3 build on the current MVP and can be advanced independently after foundational provenance work.
 - US4 depends on approved-baseline work from US2 and explicit execution safety from US3.
 - US5 depends on pinned revision and approved-baseline data from US1/US2.
-- GenAI work is blocked on data-owner/provider approval; it is not required for the deterministic MVP.
+- The Azure adapter is implemented and mock-tested; real use is blocked on data-owner/provider approval and endpoint configuration. It is not required for the deterministic MVP.
 
 ## Parallel Opportunities
 
@@ -126,4 +126,4 @@ description: "User-story task plan for the Shopizer source-to-specification loop
 
 ## MVP Scope
 
-The already-working MVP covers the current source-discovery, artifact-preview/download, and traceability path. For the next publishable increment, prioritize T004-T014 and T021-T025: evidence robustness, business/spec distinction, source-linked BRD quality, and truthful review/test status. GenAI, code execution, persistence, and drift are explicitly later phases.
+The already-working MVP covers source discovery, artifact preview/download, traceability, and an optional mock-tested Azure BRD path. For the next publishable increment, prioritize T004-T014 and T021-T025: evidence robustness, business/spec distinction, human review, and truthful test status. Approval persistence, generated code, actual Shopizer test execution, and drift remain later phases.

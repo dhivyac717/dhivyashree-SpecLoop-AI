@@ -102,11 +102,12 @@ Specification-Driven Change Plan
 
 - Python 3.11+ for deterministic repository discovery and artifact generation.
 - Streamlit for the local analysis, review, and download interface.
+- Optional Azure OpenAI BRD drafting through the official OpenAI Python SDK, gated by environment configuration and explicit per-run consent.
 - Git metadata to identify the analyzed revision when available.
 - GitHub Spec Kit and Copilot skills for project specifications, plans, and tasks.
 - Shopizer Java/Maven repository as the case-study source.
 
-The current prototype does not call a generative model, modify Shopizer code, or execute Shopizer tests. Azure OpenAI, Semantic Kernel, and AI Foundry documents are exploratory options only. Any external AI use requires explicit source-data and retention approval.
+The default analysis is deterministic and makes no model call. If the user explicitly opts in and configures an approved Azure OpenAI deployment, the app sends analyst-entered context plus discovered route/source-reference metadata for BRD drafting; it does not send Java source-file contents in that request. External AI use requires organizational source-data and retention approval. The adapter validates citations and labels output as an unapproved draft. The app does not modify Shopizer code or execute Shopizer tests. Semantic Kernel and AI Foundry remain exploratory options.
 
 ## What Makes SpecLoop-AI Different?
 
@@ -124,7 +125,7 @@ Reference project: https://github.com/shopizer-ecommerce/shopizer
 
 ## Current Demo
 
-Run the demo using the commands in [README.md](README.md). The local app scans a Shopizer repository, previews eight Markdown artifacts, and downloads them individually or as a ZIP. All generated requirements and user-story seeds are marked as drafts requiring review.
+Run the demo using the commands in [README.md](README.md). The local app scans a Shopizer repository, previews eight deterministic Markdown artifacts, and downloads them individually or as a ZIP. With explicit Azure consent/configuration, it adds an AI-assisted BRD draft as an additional artifact. All generated requirements and user-story seeds remain drafts requiring review.
 
 ## Reference URL
 

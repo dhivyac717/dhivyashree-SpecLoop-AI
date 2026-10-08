@@ -9,7 +9,8 @@
 ## Output
 
 - One structured analysis result containing project metadata and three capability inventories.
-- Eight Markdown artifact strings: SourceAnalysis, BRD, SDD, UserStories, FunctionalRequirements, TestCases, TraceabilityMatrix, and ModernizationAssessment.
+- Eight deterministic Markdown artifact strings: SourceAnalysis, BRDEvidence, SDD, UserStories, FunctionalRequirements, TestCases, TraceabilityMatrix, and ModernizationAssessment.
+- Optional `AIAssistedBRD.md` only when the user explicitly consents, Azure configuration is present, and all response citations validate against discovered evidence.
 - Source-derived claims include a repository-relative file path and 1-based line where available.
 
 ## Safety and Status Semantics
@@ -19,7 +20,7 @@
 - Invalid root path or missing/malformed root `pom.xml` returns a clear error and no successful result.
 - Discovered test files are not considered executed. Ignored/disabled annotations are reported separately.
 - Proposed tests, inferred stories, and requirement observations are drafts, never approval or pass claims.
-- No external network/model request is made. No artifact is written to the selected repository.
+- The default path makes no external network/model request. No artifact is written to the selected repository.
 
 ## Roadmap Contracts (Not Implemented)
 
@@ -27,4 +28,4 @@
 - **Change workflow**: a user-selected request references approved requirement IDs and acceptance criteria; generated code is isolated and requires explicit confirmation.
 - **Test execution**: results are recorded only after an explicitly authorized command runs; proposed/not-run tests remain distinct.
 - **Drift report**: a later pinned repository revision is compared with an approved baseline; findings link changed evidence and require human disposition.
-- **GenAI adapter**: disabled by default; configuration must disclose provider, sent data, retention terms, and source-owner approval.
+- **GenAI adapter**: Azure OpenAI client is implemented but disabled by default; enabling requires provider/source-owner approval, data disclosure, and per-run consent. The prompt contains business context and route/source-reference metadata, not Java file contents. Retention terms require owner review.

@@ -1,6 +1,6 @@
 # Shopizer Demo Screenshots
 
-No screenshots are included yet. The current app analyzes a local Shopizer checkout and generates eight downloadable, source-linked draft artifacts. It does not call a generative model or implement future code changes.
+No screenshots are included yet. The current app analyzes a local Shopizer checkout and generates eight deterministic, source-linked draft artifacts. An optional, consent-gated Azure OpenAI path adds a BRD draft. Code changes, test execution, and drift detection are not implemented.
 
 Capture genuine screenshots from the running demo and review them for local paths, source/customer data, and secrets before publication. Suggested evidence views:
 

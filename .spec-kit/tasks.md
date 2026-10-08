@@ -6,12 +6,13 @@ Status: current local prototype includes deterministic discovery, draft artifact
 
 - [x] Discover Shopizer Maven metadata, supported Java API mappings, relevant tests, and ignored/disabled annotations.
 - [x] Generate eight source-linked Markdown artifacts and expose them in the local Streamlit app.
+- [x] Add opt-in Azure OpenAI BRD drafting with per-run consent, metadata-only evidence, citation checks, and offline mock tests.
 - [x] Add fixture tests for route extraction, test classification, and artifact traceability.
 - [x] Initialize official GitHub Spec Kit for Copilot and add the project constitution.
 
 ## Future Work
 
-- [ ] Add opt-in model-provider adapter only after data-owner and retention approval.
+- [ ] Obtain data-owner approval and configure an approved Azure deployment/retention policy before real provider use.
 - [ ] Add reviewer approval/versioning workflow for accepted requirements and specifications.
 - [ ] Add implementation task generation from approved specifications.
 - [ ] Add isolated worktree/branch support for generated code changes and explicit test execution.

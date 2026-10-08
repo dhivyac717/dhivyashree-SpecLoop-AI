@@ -31,11 +31,12 @@ Evidence Discovery -> BRD -> Functional / Technical Specifications
 ### What Works in This Prototype
 
 - Read-only discovery of Shopizer Maven metadata, Java API mappings, relevant source files, test files, and ignore annotations.
-- Deterministic generation of eight reviewable Markdown artifacts with source references, test status, and traceability.
+- Deterministic generation of eight reviewable Markdown artifacts, including a BRD evidence inventory, with source references, test status, and traceability.
+- Optional ninth artifact: an Azure OpenAI BRD draft from analyst-provided context and route/source-reference metadata, gated by explicit per-run consent and environment configuration.
 - Streamlit UI to analyze a local repository, review artifacts, and download Markdown files or a ZIP bundle.
 - Official GitHub Spec Kit workflow initialized for Copilot, with a project constitution and feature specification.
 
-The current prototype uses deterministic local analysis. It does **not** call an LLM, generate or modify application code, execute Shopizer tests, or detect drift across historical revisions. The architecture and hackathon vision describe those as future capabilities, not completed features.
+The default analysis is deterministic and makes no network call. A separate Azure OpenAI option can draft business requirements only after organizational approval, environment configuration, and explicit per-run consent. It sends analyst-entered context and selected route/source-reference metadata, not Java source contents. Generated text remains unapproved. The prototype does not generate or modify application code, execute Shopizer tests, or detect drift across historical revisions.
 
 ### Shopizer Case Study
 
@@ -54,7 +55,7 @@ python -m pip install -r demo-app/requirements.txt
 python -m streamlit run demo-app/streamlit_app.py
 ```
 
-In the app, select the local Shopizer repository root and choose **Analyze repository**. The analysis is read-only and makes no external model calls.
+In the app, select the local Shopizer repository root and choose **Analyze repository**. Source discovery is read-only and makes no external model call. The optional Azure BRD draft sends only analyst context and route/source-reference metadata after explicit consent.
 
 ### Specification Workflow
 

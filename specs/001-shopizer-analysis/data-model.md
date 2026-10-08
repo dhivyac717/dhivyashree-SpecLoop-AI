@@ -37,7 +37,7 @@ All records are in-memory Python dictionaries for one analysis run. They are not
 
 ## ArtifactBundle
 
-Map of eight Markdown filenames to content strings. The UI offers each file and a ZIP for download; it does not write to the selected source repository.
+Map of eight deterministic Markdown filenames to content strings. The UI offers each file and a ZIP for download; it does not write to the selected source repository. A consented Azure request may add one `AIAssistedBRD.md` draft after its citations validate.
 
 ## Roadmap Entities (Not Implemented)
 

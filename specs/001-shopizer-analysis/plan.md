@@ -6,13 +6,13 @@
 
 ## Summary
 
-This feature defines SpecLoop-AI's full Shopizer source-to-specification loop. The current MVP discovers Maven metadata, Java API mappings, source/test evidence, generates eight traceable draft artifacts, and previews/downloads them in Streamlit. The roadmap adds reviewed specification baselines, optional GenAI drafting, change implementation against approved requirements, actual test results, and revision drift. Source analysis remains read-only; external model calls and code changes require explicit approval.
+This feature defines SpecLoop-AI's full Shopizer source-to-specification loop. The current MVP discovers Maven metadata, Java API mappings, and source/test evidence, generates eight deterministic artifacts, and previews/downloads them in Streamlit. An optional Azure OpenAI adapter drafts BRD requirements after organizational approval, environment configuration, and per-run consent. Reviewed-baseline persistence, change implementation, actual test execution, and revision drift remain roadmap work. Source discovery is read-only.
 
 ## Technical Context
 
 **Language/Version**: Python 3.11+ (syntax and tooling baseline)
 
-**Primary Dependencies**: Streamlit; Python standard library for XML, Git revision metadata, archive packaging, and unit tests. No model provider is configured.
+**Primary Dependencies**: Streamlit 1.65.0; OpenAI Python SDK 1.109.1 for optional Azure OpenAI BRD drafting; Python standard library for XML, Git revision metadata, archive packaging, and unit tests. No endpoint or credentials are stored in the repository.
 
 **Storage**: In-memory analysis result; Markdown downloads and ZIP archive; no persistent database
 
@@ -24,9 +24,9 @@ This feature defines SpecLoop-AI's full Shopizer source-to-specification loop. T
 
 **Performance Goals**: Complete analysis of the supplied Shopizer checkout in a single interactive run; no latency SLA is asserted until measured on a pinned machine/revision
 
-**Constraints**: Current analyzer is read-only; no network/model calls or Shopizer test execution; report revision unavailability; source parsing is best-effort; no real customer data; no silent persistence. Future code/test execution requires explicit approval and isolation.
+**Constraints**: Default analyzer is read-only and makes no network/model calls; report revision unavailability; source parsing is best-effort; no real customer data; no silent persistence. Optional Azure requests require an approved deployment, explicit per-run consent, and transmit no Java source contents. Shopizer test execution and future code changes remain out of scope.
 
-**Scale/Scope**: One local Maven repository per analysis run; three capabilities (order, cart, customer); eight Markdown artifacts
+**Scale/Scope**: One local Maven repository per analysis run; three capabilities (order, cart, customer); eight deterministic Markdown artifacts plus one optional AI BRD draft
 
 ## Constitution Check
 
@@ -35,17 +35,17 @@ This feature defines SpecLoop-AI's full Shopizer source-to-specification loop. T
 - Evidence grounding: PASS. Route claims include source path and line; test files have explicit execution status.
 - Read-only analysis: PASS. Scanner reads POM/Java files and queries Git revision only; it does not write to the selected repository or execute Shopizer code.
 - Complete traceability: PASS. Each source-derived route requirement gets a traceability row and proposed test ID.
-- Privacy/provider boundary: PASS. Pipeline is deterministic and makes no external requests; synthetic fixtures contain no customer values.
+- Privacy/provider boundary: PASS. Default pipeline is deterministic and makes no external requests; the optional Azure call requires explicit per-run consent and sends analyst context plus route/source-reference metadata, not Java source files. Synthetic fixtures contain no customer values.
 - Honest verification/human approval: PASS. Test suggestions and inferred story seeds are labeled as unexecuted/unapproved drafts.
 
 ## Design Decisions
 
-See [research.md](research.md). Use deterministic route discovery and structured XML parsing for the current Shopizer case. Keep outputs in memory and preview/download them. Model-backed drafting is an opt-in future phase after provider/data approval; it cannot replace evidence validation. Approved artifact persistence, implementation generation, test execution, and drift comparison require separate design and safety review.
+See [research.md](research.md). Use deterministic route discovery and structured XML parsing for the current Shopizer case. Keep outputs in memory and preview/download them. An optional Azure OpenAI adapter drafts a BRD from analyst context plus route/source-reference metadata after per-run consent; evidence validation and human approval remain mandatory. Approved artifact persistence, implementation generation, test execution, and drift comparison require separate design and safety review.
 
 ## Delivery Phases
 
-- **MVP (implemented)**: local source discovery, draft BRD/spec/test/traceability outputs, Streamlit review/download, and fixture tests.
-- **Next**: reviewer-owned approval/versioning and an opt-in provider adapter after data-owner approval.
+- **MVP (implemented)**: local source discovery, eight deterministic evidence/spec/test/traceability outputs, Streamlit review/download, optional consent-gated Azure BRD drafts, and fixture/mock tests.
+- **Next**: obtain data-owner approval before configuring a real Azure deployment and add reviewer-owned approval/versioning.
 - **Future**: map enhancement requests to approved requirements, implement/test changes in an isolated work area, and compare later source revisions for drift.
 
 ## Project Structure

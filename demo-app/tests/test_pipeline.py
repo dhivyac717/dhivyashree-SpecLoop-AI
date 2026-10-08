@@ -72,6 +72,9 @@ public class OrderApiIntegrationTest {
         self.assertEqual(len(result["requirements"]["requirements"]), len(result["traceability"]["rows"]))
         self.assertIn("No tests were executed", result["markdown"]["TestCases.md"])
         self.assertEqual(len(result["markdown"]), 8)
+        self.assertIn("BRDEvidence.md", result["markdown"])
+        self.assertNotIn("BRD.md", result["markdown"])
+        self.assertIn("not a business requirements document", result["markdown"]["BRDEvidence.md"])
 
 
 if __name__ == "__main__":

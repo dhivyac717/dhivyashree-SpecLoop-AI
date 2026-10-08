@@ -1,14 +1,14 @@
-# Azure OpenAI Design for Shopizer Analysis (Exploratory)
+# Azure OpenAI Design for Shopizer Analysis
 
-Status: option study only. No Azure OpenAI resource, model, endpoint, or connection is configured.
+Status: optional BRD-drafting adapter implemented. No Azure endpoint, deployment, or credentials are configured in the repository or current demo environment.
 
 ## Candidate Use
 
-If approved, use a model only to draft summaries and artifacts from a curated evidence inventory of Shopizer order, cart, and customer code. Deterministic discovery and source references remain the authority.
+When explicitly enabled, the adapter drafts BRD statements from analyst-entered context and a curated list of Shopizer route/source-reference metadata. It does not send Java file contents. The adapter accepts only citations from the supplied evidence list; deterministic discovery remains the authority for source facts.
 
 ## Identity, Network, and Secrets
 
-Use managed identity where supported, private/network-restricted access where required, and managed secret storage. Never put API keys in source, sample JSON, prompts, or screenshots. Restrict repository access to approved users.
+The local prototype reads `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_API_KEY`, `AZURE_OPENAI_DEPLOYMENT`, and optional `AZURE_OPENAI_API_VERSION` from the process environment. Do not commit these values. Production use should prefer managed identity where supported, private/network-restricted access where required, and managed secret storage. Restrict repository access to approved users.
 
 ## Data Handling and Safety
 

@@ -4,7 +4,7 @@ Status: proposed future workflow documentation; the current project is configure
 
 ## Suggested Roles
 
-Use separate reviewable tasks for source discovery, order/cart/customer analysis, requirement/design drafting, test-gap analysis, traceability, and modernization review. `demo-app/agents/` currently implements deterministic local discovery/drafting; it does not call an LLM or modify application code.
+Use separate reviewable tasks for source discovery, order/cart/customer analysis, requirement/design drafting, test-gap analysis, traceability, and modernization review. Source discovery remains deterministic. A separate Azure OpenAI BRD adapter runs only after per-run consent and configured credentials; it does not modify application code.
 
 ## Inputs and Permissions
 

@@ -30,12 +30,12 @@ As a product owner or analyst, I want the discovered evidence organized into a B
 
 **Why this priority**: Recovered knowledge only guides future development when it is organized, traceable, reviewable, and explicitly approved.
 
-**Independent Test**: Run analysis on the fixture, verify all eight Markdown outputs are previewable/downloadable, and confirm unapproved requirements remain labeled as drafts.
+**Independent Test**: Run deterministic analysis on the fixture, verify its eight Markdown outputs are previewable/downloadable, and confirm unapproved requirements remain labeled as drafts. Separately, use a mock Azure client to verify the opt-in BRD draft cites only supplied evidence.
 
 **Acceptance Scenarios**:
 
 1. **Given** a successful analysis, **When** I open each artifact view, **Then** I can inspect its content and source/test status.
-2. **Given** a successful analysis, **When** I download the artifact bundle, **Then** it contains source analysis, BRD, functional/technical specifications, stories, tests, traceability, and modernization observations.
+2. **Given** a successful analysis, **When** I download the default artifact bundle, **Then** it contains source analysis, BRD evidence, functional/technical inventories, story seeds, test inventory, traceability, and modernization observations; an explicitly requested AI BRD draft is an additional artifact.
 3. **Given** a requirement observation, **When** I inspect traceability, **Then** its source reference and proposed test link are visible.
 
 ### User Story 3 - Distinguish Evidence from Decisions (Priority: P1)
@@ -99,18 +99,18 @@ As a maintainer, I want later source revisions compared with approved evidence s
 - **FR-003**: The system MUST discover relevant order, cart, and customer Java source/test files and supported REST route mappings with source file and line references.
 - **FR-004**: The system MUST report a source revision when available and continue with an explicit unavailable status when it is not.
 - **FR-005**: The system MUST distinguish active-looking, ignored/disabled, and proposed test information, and MUST state that the analyzer did not execute tests.
-- **FR-006**: The system MUST produce eight reviewable Markdown artifacts: source analysis, BRD, SDD, user-story seeds, functional requirements, test cases, traceability matrix, and modernization assessment.
+- **FR-006**: The system MUST produce eight deterministic Markdown artifacts: source analysis, BRD evidence inventory, SDD inventory, user-story seeds, functional requirement observations, test inventory, traceability matrix, and modernization assessment.
 - **FR-007**: Each source-derived requirement MUST include at least one source reference, and every generated requirement MUST have a traceability row.
 - **FR-008**: The system MUST label generated requirements as source-derived drafts and user stories as inferred seeds requiring review.
 - **FR-009**: The system MUST allow each artifact and the complete artifact bundle to be downloaded without silently writing into the analyzed repository.
 - **FR-010**: The system MUST handle invalid input paths and unreadable/malformed project descriptors with a clear error state.
-- **FR-011**: The system MUST NOT make external model/provider calls or claim to execute Shopizer tests.
+- **FR-011**: The default analysis MUST NOT make external model/provider calls; the system MUST NOT claim to execute Shopizer tests unless execution actually occurred.
 - **FR-012**: The system MUST NOT include real customer data, credentials, tokens, payment data, or secrets in generated sample data.
 - **FR-013**: The system MUST support explicit human approval of a specification before it becomes a baseline for future feature work.
 - **FR-014**: Future code/test generation MUST be traceable to approved requirement identifiers and acceptance criteria and MUST require explicit user action.
 - **FR-015**: The system MUST surface conflicts between implementation, tests, and approved specifications rather than silently rewriting the baseline.
 - **FR-016**: The system MUST be able to compare a later source revision with approved evidence and report affected/stale traceability links.
-- **FR-017**: External GenAI processing MUST remain disabled unless a provider and source-data handling policy have been explicitly approved and disclosed.
+- **FR-017**: Azure OpenAI processing MUST remain disabled unless an approved endpoint is configured and the user explicitly consents for that run after seeing a data-transmission disclosure.
 
 ### Key Entities
 
@@ -118,7 +118,7 @@ As a maintainer, I want later source revisions compared with approved evidence s
 - **Evidence Reference**: A source file, line, route, or test record supporting a report claim.
 - **Requirement Observation**: A stable identifier, capability, source-derived statement, evidence references, and draft status.
 - **Test Record**: A discovered test file and its annotation/ignore status; this does not represent test execution.
-- **Artifact Bundle**: The eight Markdown outputs produced for one analysis run, available for preview/download.
+- **Artifact Bundle**: The eight deterministic Markdown outputs produced for one analysis run, available for preview/download; a separately generated AI BRD draft is optional and additional.
 
 ## Success Criteria *(mandatory)*
 
@@ -126,10 +126,10 @@ As a maintainer, I want later source revisions compared with approved evidence s
 
 - **SC-001**: On the supplied Shopizer checkout, one analysis run discovers all five root Maven modules and the authenticated and anonymous checkout routes.
 - **SC-002**: Every generated requirement observation has at least one source reference and exactly one traceability row.
-- **SC-003**: All eight Markdown artifacts are available after a successful analysis and are included in the downloaded archive.
+- **SC-003**: All eight deterministic Markdown artifacts are available after a successful analysis and included in the downloaded archive; if requested successfully, the AI BRD draft is also included.
 - **SC-004**: An ignored order integration test is reported as ignored/disabled, and no report claims Shopizer tests were executed.
 - **SC-005**: Invalid repository input produces an actionable error without an unhandled application exception.
-- **SC-006**: Analysis leaves the selected source repository unchanged and makes no external provider call.
+- **SC-006**: Analysis leaves the selected repository unchanged; no provider call occurs unless the user explicitly opts in to Azure BRD drafting.
 - **SC-007**: Every feature task and candidate test generated from an approved specification identifies at least one requirement or acceptance-criterion ID.
 - **SC-008**: Every recorded pass/fail/skipped test state is backed by a test execution result; all other test suggestions remain not-run.
 - **SC-009**: A change to a referenced route in a pinned test repository revision produces a traceability drift item linked to the affected artifact.
@@ -137,7 +137,7 @@ As a maintainer, I want later source revisions compared with approved evidence s
 ## Assumptions
 
 - The initial supported target is a local Shopizer Maven repository with a readable root `pom.xml` and Java source files.
-- The current release is deterministic and local; model-backed generation, persistent approval/versioning, implementation generation, test execution, and drift comparison are future phases.
+- The default release is deterministic and local. Optional Azure OpenAI BRD drafting sends analyst-entered context and selected route/source-reference metadata after explicit consent; it does not send Java file contents. Persistent approval/versioning, implementation generation, Shopizer test execution, and drift comparison are future phases.
 - Repository route and test discovery is best-effort static analysis; it does not establish full runtime behavior, authorization correctness, or test pass status.
 - The current Shopizer checkout is a validation example, not the only supported input.
 - Generated BRD/story language is a draft derived from code; stakeholders must approve business intent and acceptance policy.

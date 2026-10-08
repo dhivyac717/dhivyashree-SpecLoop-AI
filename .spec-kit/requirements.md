@@ -28,12 +28,12 @@ Demonstrate a source-to-specification loop that recovers Shopizer behavior from 
 
 ## Prototype Boundary
 
-Implemented: deterministic local discovery, artifact drafting, traceability generation, Streamlit preview/download, and Spec Kit feature workflow.
+Implemented: deterministic local discovery, evidence/specification artifact drafting, traceability generation, Streamlit preview/download, and Spec Kit feature workflow. An optional Azure OpenAI adapter drafts BRD requirements from analyst-provided context and discovered route/source-reference metadata after per-run consent and configuration.
 
-Not implemented: model-backed analysis, automatic code changes, actual Shopizer test execution, historical drift detection, shared persistence, production deployment, and measured productivity benefits.
+Not implemented: LLM analysis of Java source contents, automatic code changes, actual Shopizer test execution, historical drift detection, shared persistence, production deployment, and measured productivity benefits.
 
 ## Open Decisions
 
-- Select approved model provider and source-data retention policy before external processing.
+- Obtain organizational approval and review source-data/retention policy before using a configured Azure endpoint.
 - Define enterprise identity/access, artifact review roles, and deployment requirements.
 - Define a measured productivity/quality baseline before making benefit claims.

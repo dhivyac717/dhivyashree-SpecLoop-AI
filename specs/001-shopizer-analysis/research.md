@@ -39,11 +39,12 @@
 - **Current state**: The prototype labels requirements and story seeds as drafts; it does not persist approvals or history.
 - **Follow-up**: Define reviewer identity, version history, rejection/edit flow, and conflict resolution before adding persistence.
 
-## Decision: GenAI drafting is opt-in and follows evidence discovery
+## Decision: Azure BRD drafting is opt-in and follows evidence discovery
 
-- **Rationale**: The hackathon idea includes GenAI, but Shopizer source may be proprietary and customer-related code contains sensitive fields. No provider or retention terms are approved.
-- **Current state**: The demo makes no model calls. Azure OpenAI, Semantic Kernel, and AI Foundry docs are exploratory only.
-- **Follow-up**: Select the provider, data boundary, retention policy, disclosure, and evaluation criteria with the data owner before implementation.
+- **Rationale**: Shopizer source may be proprietary and customer-related code contains sensitive fields. Provider use must be user-visible and approved.
+- **Current state**: An optional Azure OpenAI adapter is implemented. The default path makes no model call. The adapter sends analyst-entered business context and discovered route/source-reference metadata, not Java source-file contents, and validates every cited evidence ID.
+- **Gate**: Configure an approved endpoint/deployment and per-run user consent. Credentials are read from environment variables and are not stored in the repository.
+- **Follow-up**: Data-owner approval, retention review, model quality evaluation, and provider cost evaluation remain required before real organizational use.
 
 ## Decision: Future implementation and test execution require isolation
 

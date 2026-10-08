@@ -18,7 +18,7 @@ The current Streamlit app analyzes a local Shopizer checkout and generates downl
 - Shopping cart: create/update/delete routes with selected integration coverage.
 - Customer: registration/login happy path with additional security cases proposed.
 
-The current pipeline is deterministic; GenAI provider connections, spec approval/versioning, code generation, actual Shopizer test execution, and historical drift comparison are roadmap items.
+The default pipeline is deterministic. An optional Azure OpenAI adapter drafts a BRD only after per-run consent and environment configuration. Persistent spec approval/versioning, code generation, actual Shopizer test execution, and historical drift comparison remain roadmap items.
 
 ## Outcomes and Next Steps
 
