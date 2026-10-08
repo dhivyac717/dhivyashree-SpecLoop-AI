@@ -4,7 +4,7 @@
 
 SpecLoop-AI is a hackathon prototype for recovering application knowledge from source code and turning it into reviewable requirements, specifications, test scenarios, and traceability. The Shopizer case study focuses on order checkout, shopping-cart operations, and customer registration/authentication.
 
-**Hackathon repository**: [dhivyac717/dhivyashree-SpecLoop-AI](https://github.com/dhivyac717/dhivyashree-SpecLoop-AI)
+
 
 ### The Problem
 
