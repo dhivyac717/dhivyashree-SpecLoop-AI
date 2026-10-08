@@ -1,0 +1,18 @@
+{
+  "service": "Shopizer customer registration and authentication",
+  "status": "source-derived sample; not runtime output",
+  "sourceEvidence": [
+    "sm-shop/src/main/java/com/salesmanager/shop/store/api/v1/customer/AuthenticateCustomerApi.java",
+    "sm-shop/src/main/java/com/salesmanager/shop/store/api/v1/customer/CustomerApi.java",
+    "sm-core/src/main/java/com/salesmanager/core/business/services/customer/CustomerService.java",
+    "sm-shop/src/test/java/com/salesmanager/test/shop/integration/customer/CustomerRegistrationIntegrationTest.java"
+  ],
+  "observedOperations": [
+    "POST /api/v1/customer/register",
+    "POST /api/v1/customer/login",
+    "authenticated profile and address operations"
+  ],
+  "observedTestCoverage": "registration followed by login and token presence",
+  "privacyNote": "No customer identifiers, addresses, credentials, or tokens are included.",
+  "sensitiveDataIncluded": false
+}

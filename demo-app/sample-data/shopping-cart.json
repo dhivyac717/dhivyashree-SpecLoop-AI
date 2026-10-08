@@ -1,0 +1,24 @@
+{
+  "service": "Shopizer shopping cart",
+  "status": "source-derived sample; not runtime output",
+  "sourceEvidence": [
+    "sm-shop/src/main/java/com/salesmanager/shop/store/api/v1/shoppingCart/ShoppingCartApi.java",
+    "sm-core/src/main/java/com/salesmanager/core/business/services/shoppingcart/ShoppingCartService.java",
+    "sm-shop/src/test/java/com/salesmanager/test/shop/integration/cart/ShoppingCartAPIIntegrationTest.java"
+  ],
+  "observedOperations": [
+    "POST /api/v1/cart creates a cart",
+    "PUT /api/v1/cart/{code} modifies a line",
+    "POST /api/v1/cart/{code}/multi applies multiple updates",
+    "DELETE /api/v1/cart/{code}/product/{sku} removes a line"
+  ],
+  "observedTestScenarios": [
+    "create cart",
+    "add item",
+    "unknown cart code",
+    "multi-update",
+    "quantity zero",
+    "delete with and without response body"
+  ],
+  "sensitiveDataIncluded": false
+}

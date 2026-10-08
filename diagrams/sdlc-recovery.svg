@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="300" viewBox="0 0 1100 300" role="img" aria-labelledby="title description">
+  <title id="title">Shopizer evidence-led specification lifecycle</title>
+  <desc id="description">Source and tests are analyzed into evidence, drafted into specifications, reviewed by a human, and then maintained against source changes.</desc>
+  <rect width="1100" height="300" fill="#f4f6f8" />
+  <g font-family="sans-serif" text-anchor="middle">
+    <g fill="#ffffff" stroke="#356859" stroke-width="2">
+      <rect x="30" y="95" width="175" height="90" rx="8" /><rect x="250" y="95" width="175" height="90" rx="8" />
+      <rect x="470" y="95" width="175" height="90" rx="8" /><rect x="690" y="95" width="175" height="90" rx="8" />
+      <rect x="910" y="95" width="160" height="90" rx="8" />
+    </g>
+    <g fill="#263238" font-size="17"><text x="117" y="132">Shopizer source</text><text x="117" y="157">and tests</text><text x="337" y="132">Evidence</text><text x="337" y="157">inventory</text><text x="557" y="132">BRD / SDD /</text><text x="557" y="157">test drafts</text><text x="777" y="132">Human</text><text x="777" y="157">review</text><text x="990" y="132">Approved</text><text x="990" y="157">artifacts</text></g>
+    <g stroke="#356859" stroke-width="3" fill="none"><path d="M205 140h40m-10-8 10 8-10 8"/><path d="M425 140h40m-10-8 10 8-10 8"/><path d="M645 140h40m-10-8 10 8-10 8"/><path d="M865 140h40m-10-8 10 8-10 8"/></g>
+    <text x="550" y="245" fill="#546e7a" font-size="16">Re-check artifacts when the pinned Shopizer revision changes</text>
+  </g>
+</svg>

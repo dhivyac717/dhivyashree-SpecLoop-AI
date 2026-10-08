@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="430" viewBox="0 0 1040 430" role="img" aria-labelledby="title description">
+  <title id="title">Shopizer modules and separate analysis tool</title>
+  <desc id="description">The Shopizer Spring Boot storefront depends on core services and shared model modules. SpecLoop-AI reads the repository and produces reviewable documents; it is not part of the Shopizer runtime.</desc>
+  <rect width="1040" height="430" fill="#f4f6f8" />
+  <g font-family="sans-serif" text-anchor="middle">
+    <rect x="250" y="35" width="540" height="300" rx="10" fill="#ffffff" stroke="#356859" stroke-width="2" />
+    <text x="520" y="70" fill="#263238" font-size="22">Shopizer Maven application</text>
+    <rect x="325" y="100" width="390" height="62" rx="6" fill="#dcece5" stroke="#356859" /><text x="520" y="138" fill="#263238" font-size="18">sm-shop: Spring Boot APIs</text>
+    <rect x="325" y="183" width="390" height="62" rx="6" fill="#e6eef2" stroke="#52717b" /><text x="520" y="221" fill="#263238" font-size="18">sm-core: business services</text>
+    <rect x="285" y="265" width="220" height="48" rx="6" fill="#f7ead7" stroke="#a56a2a" /><text x="395" y="295" fill="#263238" font-size="15">sm-core-model</text>
+    <rect x="535" y="265" width="220" height="48" rx="6" fill="#f7ead7" stroke="#a56a2a" /><text x="645" y="295" fill="#263238" font-size="15">sm-shop-model</text>
+    <rect x="65" y="145" width="145" height="100" rx="8" fill="#ffffff" stroke="#52717b" stroke-width="2" /><text x="137" y="185" fill="#263238" font-size="17">Shopizer</text><text x="137" y="210" fill="#263238" font-size="15">source + tests</text>
+    <rect x="830" y="145" width="165" height="100" rx="8" fill="#ffffff" stroke="#a56a2a" stroke-width="2" /><text x="912" y="185" fill="#263238" font-size="17">SpecLoop-AI</text><text x="912" y="210" fill="#263238" font-size="14">read-only analysis</text>
+    <path d="M210 195h110m-12-8 12 8-12 8" stroke="#356859" stroke-width="3" fill="none" /><path d="M715 195h115m-12-8 12 8-12 8" stroke="#a56a2a" stroke-width="3" fill="none" />
+    <text x="520" y="390" fill="#546e7a" font-size="16">Analysis tool is separate from Shopizer runtime; deployment integration is not configured.</text>
+  </g>
+</svg>
